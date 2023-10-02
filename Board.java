@@ -14,6 +14,8 @@ public class Board {
             String tileNum = scan.nextLine();
             int startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
             int startPosCol = Integer.parseInt(tileNum.substring(1))-1;
+
+            // While loop checks to see if the start pos is a valid location on the grid
             while (startPosRow > 9 || startPosRow < 0 || startPosCol > 9 || startPosCol < 0 || game[startPosRow][startPosCol] != 0) {
             System.out.println("Invalid placement! Try again: ");
             tileNum = scan.nextLine();
@@ -24,6 +26,9 @@ public class Board {
             tileNum = scan.nextLine();
             int endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
             int endPosCol = Integer.parseInt(tileNum.substring(1))-1;
+
+            // Second while loop checks to see if the end pos is a valid location on the grid. 
+            // It also checks if the end pos is the correct distance away from the start pos
             while ((Math.abs(startPosRow - endPosRow) + Math.abs(startPosCol - endPosCol) != ships[ship]-1)
             || (startPosRow != endPosRow && startPosCol != endPosCol)
             || (endPosRow > 9 || endPosRow < 0 || endPosCol > 9 || endPosCol < 0)
@@ -34,6 +39,8 @@ public class Board {
             endPosCol = Integer.parseInt(tileNum.substring(1))-1;
             System.out.println(endPosCol);
             }
+
+            // Actually adds the ship tiles to the grid once it's validated.
             for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                 for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
                     game[r][c] = 1;
