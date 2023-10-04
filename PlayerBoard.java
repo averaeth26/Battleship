@@ -25,6 +25,11 @@ public class PlayerBoard {
                 System.out.println(tileNum);
                     reset = true;
                 }
+
+            if (reset == true) {
+                ship -= 1;
+                continue;
+            }
             
             int startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
             int startPosCol = Integer.parseInt(tileNum.substring(1))-1;
@@ -51,6 +56,11 @@ public class PlayerBoard {
             int endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
             int endPosCol = Integer.parseInt(tileNum.substring(1))-1;
 
+            if (reset == true) {
+                ship -= 1;
+                continue;
+            } 
+
             // For loops checks to see if two ships are overlapping
             boolean overlapping = false;
             for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
@@ -61,10 +71,10 @@ public class PlayerBoard {
             }
             // Second while loop checks to see if the end pos is a valid location on the grid. 
             // It also checks if the end pos is the correct distance away from the start pos
-            while (((Math.abs(startPosRow - endPosRow) + Math.abs(startPosCol - endPosCol) != ships[ship]-1)
+            while ((Math.abs(startPosRow - endPosRow) + Math.abs(startPosCol - endPosCol) != ships[ship]-1)
             || (startPosRow != endPosRow && startPosCol != endPosCol)
             || (endPosRow > 9 || endPosRow < 0 || endPosCol > 9 || endPosCol < 0)
-            || game[endPosRow][endPosCol] != 0 || overlapping == true) && reset == false) {
+            || game[endPosRow][endPosCol] != 0 || overlapping == true) {
                 System.out.println("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
                 // If the user types "reset", the program sends them back to the beginning of the ship placement
