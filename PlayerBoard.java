@@ -6,13 +6,15 @@ public class PlayerBoard {
     int numCols = 10;
     int[] ships = {2, 3, 3, 4, 5};
     int[][] game = new int[numRows][numCols];
-    public void regularSetup() {
+    public void userRegularSetup() {
         // Loops through each of the ships from shortest to longest (in the order of the ships array).
         for(int ship = 0; ship < ships.length; ship++) {
             System.out.print("Where would you like to place one end of your " + ships[ship] + " tile long ship?: ");
             String tileNum = scan.nextLine();
             int startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
             int startPosCol = Integer.parseInt(tileNum.substring(1))-1;
+            boolean reset = false;
+
 
             // While loop checks to see if the start pos is a valid location on the grid
             while (startPosRow > 9 || startPosRow < 0 || startPosCol > 9 || startPosCol < 0 || game[startPosRow][startPosCol] != 0) {
@@ -42,9 +44,14 @@ public class PlayerBoard {
             || game[endPosRow][endPosCol] != 0 || overlapping == true) {
                 System.out.println("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
+                // If the user types "reset", the program sends them back to the beginning of the ship placement
+                if (tileNum.toLowerCase().equals("reset")) {
+                    reset = true;
+                    break;
+                }
+                    
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 endPosCol = Integer.parseInt(tileNum.substring(1))-1;
-                System.out.println(endPosCol);
                 overlapping = false;
                 for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                     for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
@@ -63,6 +70,8 @@ public class PlayerBoard {
             printBoard();
         }
     }
+
+    public void
 
     public void speedSetup () {
         
