@@ -133,8 +133,6 @@ public class PlayerBoard {
             int randomDir;
             do {
             valid = false;
-            // startPosRow = (int)(Math.random() * (10-((ships[ship]-1)*2))) + (ships[ship]-1);
-            // startPosCol = (int)(Math.random() * (10-((ships[ship]-1)*2))) + (ships[ship]-1);
             startPosRow = (int)(Math.random() * 10);
             startPosCol = (int)(Math.random() * 10);
                 // Cycles through the four directions (up, down, left, and right)
@@ -144,6 +142,7 @@ public class PlayerBoard {
                 directions[3] = startPosCol+(ships[ship]-1);
                 
                 possibleDirections = new boolean[directions.length];
+                // Checks the possible ship location in each direction for overlapping tiles to determine the possible directions the ship could be placed in
                 for (int dir = 0; dir < directions.length; dir++) {
                     overlapping = false;
                     if (dir < 2) {
@@ -172,7 +171,7 @@ public class PlayerBoard {
                         valid = true;
                     }
                 }
-            } while (!valid);
+            } while (!valid); // Makes sure there is at least one valid location for the ship to be placed in from its starting location
             do {
                 endPosRow = startPosRow; 
                 endPosCol = startPosCol;
@@ -183,8 +182,9 @@ public class PlayerBoard {
             else {
                 endPosCol = directions[randomDir];
             }
-            } while (possibleDirections[randomDir] != true);
+            } while (possibleDirections[randomDir] != true); // Generates the other endpoint of the ship in a random valid direction from the starting point
             System.out.println("\n" + (char)(startPosRow+'a') + " " + (startPosCol+1) + " - " + (char)(endPosRow+'a') + " " + (endPosCol+1));
+            // Adds each ship to the enemy board
             for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                 for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
                     opponentBoard[r][c] = 1;
