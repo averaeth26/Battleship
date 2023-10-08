@@ -10,7 +10,7 @@ public class PlayerBoard {
     int[][] opponentBoard = new int[numRows][numCols];
 
 
-    // Sets up the player's board in Normal mode
+    // Sets up the player-placed board in Normal mode
     public void userRegularSetup() {
         // Loops through each of the ships from shortest to longest (in the order of the ships array).
         for(int ship = 0; ship < numShips; ship++) {
@@ -18,6 +18,7 @@ public class PlayerBoard {
             boolean reset = false;
             System.out.print("Where would you like to place one end of your " + ships[ship] + " tile long ship?: ");
             String tileNum = scan.nextLine();
+            // Challenge: Getting the reset system to work was a huge challenge as I had to work it in around the existing code, which made it difficult for me to figure out where to put what.
             if (tileNum.toLowerCase().equals("reset")) {
                 ship -= 1;
                 continue;
@@ -40,6 +41,7 @@ public class PlayerBoard {
                         break;
                     }
             // If statement to prevent scenarios that would result in crashes due to invalid input validation.
+            // Challenge: Finding and writing code to prevent every type of input that caused the program to crash.
             if (tileNum.length() < 2 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
                 continue;
             }
@@ -119,18 +121,18 @@ public class PlayerBoard {
 
     // Places ships randomly on the grid
     public void randomSetup() {
+        int startPosRow;
+        int startPosCol;
+        int endPosRow;
+        int endPosCol;
+        boolean valid;
+        boolean overlapping;
+        // Challenge: Had trouble figuring out how to calculate valid directions without a ton of repeated code
+        // I ended up using the directions list to make the code much less repetitive (instead of just doing the code manually for all 4 directions)
+        int[] directions = new int[4];
+        boolean[] possibleDirections;
+        int randomDir;
         for(int ship = 0; ship < numShips; ship++) {
-            int startPosRow;
-            int startPosCol;
-            int endPosRow;
-            int endPosCol;
-            boolean valid;
-            boolean overlapping;
-            // Challenge: Had trouble figuring out how to calculate valid directions without a ton of repeated code
-            // I ended up using the directions list to make the code much less repetitive (instead of just doing the code manually for all 4 directions)
-            int[] directions = new int[4];
-            boolean[] possibleDirections;
-            int randomDir;
             do {
             valid = false;
             startPosRow = (int)(Math.random() * 10);
