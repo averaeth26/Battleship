@@ -22,44 +22,50 @@ public class PlayerBoard {
             System.out.print("Where would you like to place one end of your " + ships[ship] + " tile long ship?: ");
             String tileNum = scan.nextLine();
             if (tileNum.toLowerCase().equals("reset")) {
-                System.out.println(tileNum);
-                    reset = true;
-                }
-
-            if (reset == true) {
                 ship -= 1;
                 continue;
+                }
+
+            int startPosRow = -1;
+            int startPosCol = -1;
+            if (tileNum.substring(0, 1).matches("[A-Za-z]+") && tileNum.substring(1).matches("[0-9]+")) {
+                startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
+                startPosCol = Integer.parseInt(tileNum.substring(1))-1;
             }
-            
-            int startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
-            int startPosCol = Integer.parseInt(tileNum.substring(1))-1;
-
-
 
             // While loop checks to see if the start pos is a valid location on the grid
             while (startPosRow > 9 || startPosRow < 0 || startPosCol > 9 || startPosCol < 0 || game[startPosRow][startPosCol] != 0) {
-                System.out.println("Invalid placement! Try again: ");
+                System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
+                System.out.println(tileNum);
                 if (tileNum.toLowerCase().equals("reset")) {
                         reset = true;
                         break;
                     }
+            if (!tileNum.substring(0, 1).matches("[A-Za-z]+") || !tileNum.substring(1).matches("[0-9]+")) {
+                continue;
+            }
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 startPosCol = Integer.parseInt(tileNum.substring(1))-1;
+            }
+            if (reset == true) {
+                ship -= 1;
+                continue;
             }
             System.out.println("Where would you like the other end of your ship to be placed?: ");
             tileNum = scan.nextLine();
 
             if (tileNum.toLowerCase().equals("reset")) {
-                    reset = true;
-                }
-            int endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
-            int endPosCol = Integer.parseInt(tileNum.substring(1))-1;
-
-            if (reset == true) {
                 ship -= 1;
                 continue;
-            } 
+                }
+            int endPosRow = 0;
+            int endPosCol = 0;
+            if (tileNum.substring(0, 1).matches("[A-Za-z]+") && tileNum.substring(1).matches("[0-9]+")) {
+                endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
+                endPosCol = Integer.parseInt(tileNum.substring(1))-1;
+            }
+
 
             // For loops checks to see if two ships are overlapping
             boolean overlapping = false;
@@ -75,14 +81,17 @@ public class PlayerBoard {
             || (startPosRow != endPosRow && startPosCol != endPosCol)
             || (endPosRow > 9 || endPosRow < 0 || endPosCol > 9 || endPosCol < 0)
             || game[endPosRow][endPosCol] != 0 || overlapping == true) {
-                System.out.println("Invalid placement! Try again: ");
+                System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
                 // If the user types "reset", the program sends them back to the beginning of the ship placement
                 if (tileNum.toLowerCase().equals("reset")) {
                     reset = true;
                     break;
                 }
-                    
+                System.out.println(tileNum);
+                if (tileNum.matches("[A-Za-z]+") || tileNum.matches("[0-9]+")) {
+                    continue;
+                }
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 endPosCol = Integer.parseInt(tileNum.substring(1))-1;
                 overlapping = false;
