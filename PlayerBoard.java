@@ -28,21 +28,21 @@ public class PlayerBoard {
 
             int startPosRow = -1;
             int startPosCol = -1;
-            if (tileNum.substring(0, 1).matches("[A-Za-z]+") && tileNum.substring(1).matches("[0-9]+")) {
+            // Preventing scenarios that would result in crashes due to invalid input validation.
+            if (tileNum.length() > 1 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 startPosCol = Integer.parseInt(tileNum.substring(1))-1;
             }
 
             // While loop checks to see if the start pos is a valid location on the grid
-            while (startPosRow > 9 || startPosRow < 0 || startPosCol > 9 || startPosCol < 0 || game[startPosRow][startPosCol] != 0) {
+            while (startPosCol > 9 || startPosCol < 0 || game[startPosRow][startPosCol] != 0) {
                 System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
-                System.out.println(tileNum);
                 if (tileNum.toLowerCase().equals("reset")) {
                         reset = true;
                         break;
                     }
-            if (!tileNum.substring(0, 1).matches("[A-Za-z]+") || !tileNum.substring(1).matches("[0-9]+")) {
+            if (tileNum.length() < 2 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
                 continue;
             }
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
@@ -61,7 +61,7 @@ public class PlayerBoard {
                 }
             int endPosRow = 0;
             int endPosCol = 0;
-            if (tileNum.substring(0, 1).matches("[A-Za-z]+") && tileNum.substring(1).matches("[0-9]+")) {
+            if (tileNum.length() > 1 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 endPosCol = Integer.parseInt(tileNum.substring(1))-1;
             }
@@ -79,7 +79,7 @@ public class PlayerBoard {
             // It also checks if the end pos is the correct distance away from the start pos
             while ((Math.abs(startPosRow - endPosRow) + Math.abs(startPosCol - endPosCol) != ships[ship]-1)
             || (startPosRow != endPosRow && startPosCol != endPosCol)
-            || (endPosRow > 9 || endPosRow < 0 || endPosCol > 9 || endPosCol < 0)
+            || (endPosCol > 9 || endPosCol < 0)
             || game[endPosRow][endPosCol] != 0 || overlapping == true) {
                 System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
@@ -88,8 +88,7 @@ public class PlayerBoard {
                     reset = true;
                     break;
                 }
-                System.out.println(tileNum);
-                if (tileNum.matches("[A-Za-z]+") || tileNum.matches("[0-9]+")) {
+            if (tileNum.length() < 2 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
                     continue;
                 }
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
