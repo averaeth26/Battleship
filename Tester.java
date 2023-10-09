@@ -1,9 +1,9 @@
-import java.util.Scanner;
-
 public class Tester {
     public static void main(String[] args) {
-        PlayerBoard grid = new PlayerBoard();
-        grid.printBoard(grid.playerBoard);
+        Intro.instructions();
+        Setup grid = new Setup();
+        grid.printBoard(grid.getPlayerBoard());
+        grid.userRegularSetup();
         grid.randomSetup();
     }
 }

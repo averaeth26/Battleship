@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-public class PlayerBoard {
+// This class is responsible for the setup phase of the program, where the player and the opponent both set up their ships to prepare for attack.
+public class Setup {
     Scanner scan = new Scanner(System.in);
     int numRows = 10;
     int numCols = 10;
@@ -12,6 +13,9 @@ public class PlayerBoard {
 
     // Sets up the player-placed board in Normal mode
     public void userRegularSetup() {
+        System.out.println("Use row column format to place your ships on the board (Example: a1 or c10).\n");
+        System.out.println("You will first place one end of your ship, then the other.\n");
+        System.out.println("Additionally, if you ever want to replace your current ship, just type reset!\n");
         // Loops through each of the ships from shortest to longest (in the order of the ships array).
         for(int ship = 0; ship < numShips; ship++) {
 
@@ -199,8 +203,12 @@ public class PlayerBoard {
     public void speedSetup () {
         
     }
+    // Getter function: Returns the player's game board.
+    public int[][] getPlayerBoard() {
+        return playerBoard;
+    }
 
-
+    // Prints out the board with row and column labels to the console.
     public void printBoard(int[][] board) {
         System.out.print("   ");
         for (int i = 0; i < numCols; i++) {
