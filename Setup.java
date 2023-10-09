@@ -74,10 +74,12 @@ public class Setup {
 
             // For loops checks to see if two ships are overlapping
             boolean overlapping = false;
-            for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
-                for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
-                    if (playerBoard[r][c] == 1)
-                        overlapping = true;
+            if (endPosCol < 10 && endPosCol > 0) {
+                for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
+                    for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
+                        if (playerBoard[r][c] == 1)
+                            overlapping = true;
+                    }
                 }
             }
             // Second while loop checks to see if the end pos is a valid location on the grid. 

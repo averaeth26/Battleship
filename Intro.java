@@ -1,4 +1,6 @@
+// This class is responsible for anything before the setup phase
 public class Intro {
+    // Prints out general instructions for the game
     public static void instructions() {
         System.out.println("Welcome to battleship!\n");
         System.out.println("The aim of the game is to sink all of your opponent's ships\nbefore they sink all of yours.\n");
