@@ -2,10 +2,13 @@
 public class Tester {
     // Main method actually runs the program.
     public static void main(String[] args) {
-        Intro.instructions();
+        Intro introduction = new Intro();
         Setup grid = new Setup();
-        grid.printBoard(grid.getPlayerBoard());
-        grid.userRegularSetup();
+        Battle guesses = new Battle();
+        introduction.instructions();
+        // grid.printBoard(grid.getPlayerBoard());
+        // grid.userRegularSetup();
         grid.randomSetup();
+        guesses.guess(grid.getOpponentBoard());
     }
 }

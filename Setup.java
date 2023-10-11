@@ -209,6 +209,9 @@ public class Setup {
     public int[][] getPlayerBoard() {
         return playerBoard;
     }
+    public int[][] getOpponentBoard() {
+        return opponentBoard;
+    }
 
     // Prints out the board with row and column labels to the console.
     public void printBoard(int[][] board) {

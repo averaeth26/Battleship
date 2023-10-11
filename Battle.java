@@ -20,10 +20,9 @@ public class Battle {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).");
         while (countOf(board, 1) > 0) {
              System.out.print("Where would you like to guess: ");
-        }
         String guessNum = scan.nextLine();
-        int startPosRow;
-        int startPosCol;
+        int startPosRow = -1;
+        int startPosCol = -1;
         do {
             if (!(guessNum.length() > 1 || guessNum.substring(0, 1).matches("[A-Ja-j]+") || guessNum.substring(1).matches("[0-9]+"))) {
                 continue;
@@ -33,5 +32,4 @@ public class Battle {
             } while (startPosCol < 0 || startPosCol > 9);
         }
     }
-    
 }
