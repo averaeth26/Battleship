@@ -11,4 +11,4 @@ public class Tester {
         grid.randomSetup();
         guesses.guess(grid.getOpponentBoard());
     }
-}
+}   
