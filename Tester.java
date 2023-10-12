@@ -6,12 +6,13 @@ public class Tester {
         Setup grid = new Setup();
         Battle guesses = new Battle();
         introduction.instructions();
+        grid.regularSetup();
         // grid.printGameBoard(grid.getOpponentBoard());
-        // grid.userRegularSetup();
-        grid.randomSetup(grid.getPlayerBoard());
-        grid.randomSetup(grid.getOpponentBoard());
-        grid.printGameBoard(grid.getPlayerBoard());
-        guesses.printMissileBoard(grid.getOpponentBoard());
-        guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
+        // grid.userSetup();
+        // grid.randomSetup(grid.getPlayerBoard());
+        // grid.randomSetup(grid.getOpponentBoard());
+        // grid.printGameBoard(grid.getPlayerBoard());
+        // guesses.printMissileBoard(grid.getOpponentBoard());
+        // guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
     }
 }   

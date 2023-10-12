@@ -13,4 +13,8 @@ public class Intro {
     public void pickGameMode() {
         
     }
+    // Getter Function: Returns the user's selected Game Mode.
+    public void getGameMode() {
+
+    }
 }

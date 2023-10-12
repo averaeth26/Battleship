@@ -3,16 +3,28 @@ import java.util.Scanner;
 // This class is responsible for the setup phase of the program, where the player and the opponent both set up their ships to prepare for attack.
 public class Setup {
     Scanner scan = new Scanner(System.in);
+    Intro introduction = new Intro();
+    setUpVariables(introduction.getGameMode().toLowerCase());
     int numRows = 10;
     int numCols = 10;
-    int[] ships = {2, 3, 3, 4, 5};
-    int numShips = ships.length;
     int[][] playerBoard = new int[numRows][numCols];
     int[][] opponentBoard = new int[numRows][numCols];
 
+    // Sets up Game Mode dependent variables based on current game mode
+    public void setUpVariables(String gameMode) {
+        if (gameMode.equals("f") || gameMode.equals("fast")) {
+            int[] ships = {3, 4, 5};
+            int numShips = ships.length;
+            }
+        else {
+            int[] ships = {3, 4, 5};
+            int numShips = ships.length;
+        }
+    }
+
 
     // Sets up the player-placed board in Normal mode
-    public void userRegularSetup() {
+    public void userSetup(int[][] board) {
         System.out.println("Use row column format to place your ships on the board (Example: a1 or c10).\n");
         System.out.println("You will first place one end of your ship, then the other.\n");
         System.out.println("Additionally, if you ever want to replace your current ship, just type reset!\n");
@@ -37,7 +49,7 @@ public class Setup {
             }
 
             // While loop checks to see if the start pos is a valid location on the grid
-            while (startPosCol > 9 || startPosCol < 0 || playerBoard[startPosRow][startPosCol] != 0) {
+            while (startPosCol > 9 || startPosCol < 0 || board[startPosRow][startPosCol] != 0) {
                 System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
                 if (tileNum.toLowerCase().equals("reset")) {
@@ -77,7 +89,7 @@ public class Setup {
             if (endPosCol < 10 && endPosCol > 0) {
                 for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                     for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
-                        if (playerBoard[r][c] == 1)
+                        if (board[r][c] == 1)
                             overlapping = true;
                     }
                 }
@@ -87,7 +99,7 @@ public class Setup {
             while ((Math.abs(startPosRow - endPosRow) + Math.abs(startPosCol - endPosCol) != ships[ship]-1)
             || (startPosRow != endPosRow && startPosCol != endPosCol)
             || (endPosCol > 9 || endPosCol < 0)
-            || playerBoard[endPosRow][endPosCol] != 0 || overlapping == true) {
+            || board[endPosRow][endPosCol] != 0 || overlapping == true) {
                 System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
                 // If the user types "reset", the program sends them back to the beginning of the ship placement
@@ -104,7 +116,7 @@ public class Setup {
                 overlapping = false;
                 for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                     for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
-                        if (playerBoard[r][c] == 1)
+                        if (board[r][c] == 1)
                             overlapping = true;
                     }
                 }
@@ -118,10 +130,10 @@ public class Setup {
             // Actually adds the ship tiles to the grid once it's validated.
             for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                 for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
-                    playerBoard[r][c] = 1;
+                    board[r][c] = 1;
                 }
             }
-            printGameBoard(playerBoard);
+            printGameBoard(board);
         }
     }
 
@@ -209,6 +221,16 @@ public class Setup {
     // Getter function: Returns the opponent's game board.
     public int[][] getOpponentBoard() {
         return opponentBoard;
+    }
+
+    public void regularSetup() {
+        printGameBoard(playerBoard);
+        userSetup(playerBoard);
+    }
+    public void speedSetup() {
+        printGameBoard(playerBoard);
+        randomSetup(playerBoard);
+        randomSetup(opponentBoard);
     }
 
     // Prints out the board with row and column labels to the console.
