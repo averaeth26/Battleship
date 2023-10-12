@@ -16,33 +16,40 @@ public class Battle {
         }
         return currentCount;
     }
-    public void guess(int[][] board) {
+    public void guessRegular(int[][] board) {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).");
+        int numGuesses = 0;
         while (countOf(board, 1) > 0) {
-             System.out.print("Where would you like to guess: ");
-        String guessNum = scan.nextLine();
-        int guessRow = -1;
-        int guessCol = -1;
-        do {
-            if (!(guessNum.length() > 1 && guessNum.substring(0, 1).matches("[A-Ja-j]+") && guessNum.substring(1).matches("[0-9]+"))) {
-                System.out.print("Invalid guess! Try again: ");
-                guessNum = scan.nextLine();
+            System.out.print("Where would you like to guess: ");
+            String guessNum = scan.nextLine();
+            int guessRow = -1;
+            int guessCol = -1;
+            do {
+                if (!(guessNum.length() > 1 && guessNum.substring(0, 1).matches("[A-Ja-j]+") && guessNum.substring(1).matches("[0-9]+"))) {
+                    System.out.print("Invalid guess! Try again: ");
+                    guessNum = scan.nextLine();
+                    continue;
+                }
+                guessRow = (int)(guessNum.toLowerCase().charAt(0)) - 'a';
+                guessCol = Integer.parseInt(guessNum.substring(1))-1;
+                if (guessCol < 0 || guessCol > 9) {
+                    System.out.print("Invalid guess! Try again: ");
+                    guessNum = scan.nextLine();
+                }
+                } while (guessCol < 0 || guessCol > 9);
+            if (board[guessRow][guessCol] >= 2) {
+                System.out.println("Oops, you already guessed there! Try again: ");
                 continue;
             }
-            guessRow = (int)(guessNum.toLowerCase().charAt(0)) - 'a';
-            guessCol = Integer.parseInt(guessNum.substring(1))-1;
-            if (guessCol < 0 || guessCol > 9) {
-                System.out.print("Invalid guess! Try again: ");
-                guessNum = scan.nextLine();
+            numGuesses ++;
+            if (board[guessRow][guessCol] == 1) {
+                System.out.println("Nice, you found an enemy ship!");
+                board[guessRow][guessCol] = 2;
             }
-            } while (guessCol < 0 || guessCol > 9);
-        if (board[guessRow][guessCol] == 2) {
-            System.out.println("Oops, you already guessed there! Try again");
-        }
-        if (board[guessRow][guessCol] == 1) {
-            System.out.println("Nice, you found an enemy ship!");
-            board[guessRow][guessCol] = 2;
-        }
+            else {
+                System.out.println("Splash! Your missile lands in an empty patch of water.");
+                board[guessRow][guessCol] = 3;
+            }
         }
     }
 }
