@@ -6,9 +6,10 @@ public class Tester {
         Setup grid = new Setup();
         Battle guesses = new Battle();
         introduction.instructions();
-        grid.printGameBoard(grid.getOpponentBoard());
-        // grid.userRegularSetup();
+        // grid.printGameBoard(grid.getOpponentBoard());
+        grid.userRegularSetup();
         grid.randomSetup();
-        guesses.guessRegular(grid.getPlayerBoard(), grid.getOpponentBoard());
+        guesses.printMissileBoard(grid.getOpponentBoard());
+        guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
     }
 }   

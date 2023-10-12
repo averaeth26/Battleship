@@ -37,70 +37,85 @@ public class Battle {
                 }
                 } while (guessCol < 0 || guessCol > 9);
             if (board[guessRow][guessCol] >= 2) {
-                System.out.println("Oops, you already guessed there!");
+                System.out.println("Oops, you already guessed there!\n");
             }
             else if (board[guessRow][guessCol] == 1) {
-                System.out.println("Nice, you found an enemy ship!");
+                System.out.println("Nice, you found an enemy ship!\n");
                 board[guessRow][guessCol] = 2;
             }
             else {
-                System.out.println("Splash! Your missile lands in an empty patch of water.");
+                System.out.println("Splash! Your missile lands in an empty patch of water.\n");
                 board[guessRow][guessCol] = 3;
             }
             printMissileBoard(board);
     }
 
+    // This function controls the opponents's guessing
     public void opponentGuess(int[][] board) {
         int guessRow = (int)(Math.random()*10);
         int guessCol = (int)(Math.random()*10);
-        System.out.println("Your opponent guessed " + (char)(guessRow+'a'));
-        if (board[guessRow][guessCol] >= 2) {
-            System.out.println("Oops, you already guessed there!");
-        }
-        else if (board[guessRow][guessCol] == 1) {
-            System.out.println("Nice, you found an enemy ship!");
+        System.out.print("Your opponent guessed " + (char)(guessRow+'a') + (guessCol+1));
+        if (board[guessRow][guessCol] == 1) {
+            System.out.println(" and hit one of your ships!\n");
             board[guessRow][guessCol] = 2;
+
         }
         else {
-            System.out.println("Splash! Your missile lands in an empty patch of water.");
+            System.out.println(" and missed your ships completely.\n");
             board[guessRow][guessCol] = 3;
-        }
-        
+        }  
     }
+
     // This function controls guessing and hit/win detection for the normal gamemode.
-    public void guessRegular(int[][] playerBoard, int[][] opponentBoard) {
+    public void guessRegular(int[][] opponentBoard) {
+        System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
+        int numGuesses = 0;
+        while (countOf(opponentBoard, 1) > 0) {
+            playerGuess(opponentBoard);
+        }
+        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
+    }
+
+    // This function controls guessing and hit/win detection for the speed gamemode.
+    public void guessSpeed(int[][] playerBoard, int[][] opponentBoard) {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(playerBoard, 1) > 0 && countOf(opponentBoard, 1) > 0) {
             playerGuess(opponentBoard);
             opponentGuess(playerBoard);
         }
+        if (countOf(opponentBoard, 1) > 0) {
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
+        }
+        else {
+        System.out.println("Unfortunately, your opponent managed to sink all of your ships before you sank all of theirs.");
+        }
     }
 
     // Prints the game board from the enemy player's perspective.
     public void printMissileBoard(int[][] board) {
         int numRows = board.length;
         int numCols = board[0].length;
-        System.out.print("   ");
+        System.out.print("  ");
         for (int i = 0; i < numCols; i++) {
-            System.out.print(i+1 + "  ");
+            System.out.print(" " + (i+1) + " ");
         }
         System.out.println("");
         for (int r = 0; r < numRows; r++) {
-            System.out.print((char)(r+'a') + "  ");
+            System.out.print((char)(r+'a') + " ");
             for (int c = 0; c < numCols; c++) {
                 if (board[r][c] < 2) {
-                    System.out.print("?  ");
+                    System.out.print(" ? ");
                 }
                 else if (board[r][c] == 2) {
-                    System.out.print("x  ");
+                    System.out.print(" X ");
                 }
                 else {
-                    System.out.print("-  ");
+                    System.out.print(" - ");
                 }
             }
             System.out.println("");
         }
+        System.out.println("");
     }
 }

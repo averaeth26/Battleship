@@ -202,9 +202,6 @@ public class Setup {
         }
     }
 
-    public void speedSetup () {
-        
-    }
     // Getter function: Returns the player's game board.
     public int[][] getPlayerBoard() {
         return playerBoard;
@@ -229,6 +226,12 @@ public class Setup {
                 }
                 else if (board[r][c] == 1) {
                     System.out.print("[:]");
+                }
+                else if (board[r][c] == 2) {
+                    System.out.print(" X "); 
+                }
+                else {
+                    System.out.println(" - ");
                 }
             }
             System.out.println("");
