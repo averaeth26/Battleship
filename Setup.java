@@ -215,15 +215,20 @@ public class Setup {
 
     // Prints out the board with row and column labels to the console.
     public void printGameBoard(int[][] board) {
-        System.out.print("   ");
+        System.out.print("  ");
         for (int i = 0; i < numCols; i++) {
-            System.out.print(i+1 + "  ");
+            System.out.print(" " + (i+1) + " ");
         }
         System.out.println("");
         for (int r = 0; r < numRows; r++) {
-            System.out.print((char)(r+'a') + "  ");
+            System.out.print((char)(r+'a') + " ");
             for (int c = 0; c < numCols; c++) {
-                System.out.print(board[r][c] + "  ");
+                if (board[r][c] == 0) {
+                    System.out.print(" . ");
+                }
+                else if (board[r][c] == 1) {
+                    System.out.print("[:]");
+                }
             }
             System.out.println("");
         }

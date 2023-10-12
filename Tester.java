@@ -6,7 +6,7 @@ public class Tester {
         Setup grid = new Setup();
         Battle guesses = new Battle();
         introduction.instructions();
-        // grid.printBoard(grid.getPlayerBoard());
+        // grid.printGameBoard(grid.getPlayerBoard());
         // grid.userRegularSetup();
         grid.randomSetup();
         guesses.guessRegular(grid.getOpponentBoard());
