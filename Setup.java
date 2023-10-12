@@ -121,7 +121,7 @@ public class Setup {
                     playerBoard[r][c] = 1;
                 }
             }
-            printBoard(playerBoard);
+            printGameBoard(playerBoard);
         }
     }
 
@@ -198,7 +198,7 @@ public class Setup {
                     opponentBoard[r][c] = 1;
                 }
             }
-            printBoard(opponentBoard); 
+            printGameBoard(opponentBoard); 
         }
     }
 
@@ -214,7 +214,7 @@ public class Setup {
     }
 
     // Prints out the board with row and column labels to the console.
-    public void printBoard(int[][] board) {
+    public void printGameBoard(int[][] board) {
         System.out.print("   ");
         for (int i = 0; i < numCols; i++) {
             System.out.print(i+1 + "  ");

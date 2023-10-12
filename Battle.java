@@ -50,6 +50,33 @@ public class Battle {
                 System.out.println("Splash! Your missile lands in an empty patch of water.");
                 board[guessRow][guessCol] = 3;
             }
+            printMissileBoard(board);
+        }
+        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + "guesses!");
+    }
+
+    public void printMissileBoard(int[][] board) {
+        int numRows = board.length;
+        int numCols = board[0].length;
+        System.out.print("   ");
+        for (int i = 0; i < numCols; i++) {
+            System.out.print(i+1 + "  ");
+        }
+        System.out.println("");
+        for (int r = 0; r < numRows; r++) {
+            System.out.print((char)(r+'a') + "  ");
+            for (int c = 0; c < numCols; c++) {
+                if (board[r][c] < 2) {
+                    System.out.print("?  ");
+                }
+                else if (board[r][c] == 2) {
+                    System.out.print("x  ");
+                }
+                else {
+                    System.out.print("-  ");
+                }
+            }
+            System.out.println("");
         }
     }
 }
