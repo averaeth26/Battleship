@@ -3,6 +3,8 @@ import java.util.Scanner;
 // This class will control the flow of the game throughout the phase where players try to find and sink each other's ships (Game loop).
 public class Battle {
     Scanner scan = new Scanner(System.in);
+    Setup gameBoard = new Setup();
+
     // Counts number of occurrances of a number in a 2d integer array.
     public int countOf(int[][] arr, int testVal) {
         int numRows = arr.length;
@@ -64,6 +66,7 @@ public class Battle {
             System.out.println(" and missed your ships completely.\n");
             board[guessRow][guessCol] = 3;
         }  
+        gameBoard.printGameBoard(board);
     }
 
     // This function controls guessing and hit/win detection for the normal gamemode.
@@ -72,6 +75,7 @@ public class Battle {
         int numGuesses = 0;
         while (countOf(opponentBoard, 1) > 0) {
             playerGuess(opponentBoard);
+            numGuesses ++;
         }
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
     }
@@ -83,8 +87,9 @@ public class Battle {
         while (countOf(playerBoard, 1) > 0 && countOf(opponentBoard, 1) > 0) {
             playerGuess(opponentBoard);
             opponentGuess(playerBoard);
+            numGuesses ++;
         }
-        if (countOf(opponentBoard, 1) > 0) {
+        if (countOf(opponentBoard, 1) == 0) {
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
         }
         else {
@@ -108,7 +113,7 @@ public class Battle {
                     System.out.print(" ? ");
                 }
                 else if (board[r][c] == 2) {
-                    System.out.print(" X ");
+                    System.out.print(" x ");
                 }
                 else {
                     System.out.print(" - ");

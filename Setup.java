@@ -228,10 +228,10 @@ public class Setup {
                     System.out.print("[:]");
                 }
                 else if (board[r][c] == 2) {
-                    System.out.print(" X "); 
+                    System.out.print(" x "); 
                 }
                 else {
-                    System.out.println(" - ");
+                    System.out.print(" - ");
                 }
             }
             System.out.println("");
