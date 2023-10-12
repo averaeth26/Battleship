@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// This class will control the flow of the game throughout the phase where players try to find and sink each other's ships (Game loop).
 public class Battle {
     Scanner scan = new Scanner(System.in);
     // Counts number of occurrances of a number in a 2d integer array.
@@ -16,6 +17,7 @@ public class Battle {
         }
         return currentCount;
     }
+    // This function controls user guessing and hit/win detection for the normal gamemode.
     public void guessRegular(int[][] board) {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).");
         int numGuesses = 0;
@@ -55,6 +57,7 @@ public class Battle {
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + "guesses!");
     }
 
+    // Prints the game board from the enemy player's perspective.
     public void printMissileBoard(int[][] board) {
         int numRows = board.length;
         int numCols = board[0].length;
