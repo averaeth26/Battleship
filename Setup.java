@@ -191,14 +191,14 @@ public class Setup {
                 endPosCol = directions[randomDir];
             }
             } while (possibleDirections[randomDir] != true); // Generates the other endpoint of the ship in a random valid direction from the starting point
-            System.out.println("\n" + (char)(startPosRow+'a') + " " + (startPosCol+1) + " - " + (char)(endPosRow+'a') + " " + (endPosCol+1));
+            // System.out.println("\n" + (char)(startPosRow+'a') + " " + (startPosCol+1) + " - " + (char)(endPosRow+'a') + " " + (endPosCol+1));
             // Adds each ship to the enemy board
             for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                 for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
                     opponentBoard[r][c] = 1;
                 }
             }
-            printGameBoard(opponentBoard); 
+            // printGameBoard(opponentBoard); 
         }
     }
 
