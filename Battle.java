@@ -17,12 +17,9 @@ public class Battle {
         }
         return currentCount;
     }
-    // This function controls user guessing and hit/win detection for the normal gamemode.
-    public void guessRegular(int[][] board) {
-        System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
-        int numGuesses = 0;
-        while (countOf(board, 1) > 0) {
-            System.out.print("Where would you like to guess: ");
+    // This function controls the player's guessing
+    public void playerGuess(int[][] board) {
+        System.out.print("Where would you like to guess: ");
             String guessNum = scan.nextLine();
             int guessRow = -1;
             int guessCol = -1;
@@ -40,11 +37,9 @@ public class Battle {
                 }
                 } while (guessCol < 0 || guessCol > 9);
             if (board[guessRow][guessCol] >= 2) {
-                System.out.println("Oops, you already guessed there! Try again: ");
-                continue;
+                System.out.println("Oops, you already guessed there!");
             }
-            numGuesses ++;
-            if (board[guessRow][guessCol] == 1) {
+            else if (board[guessRow][guessCol] == 1) {
                 System.out.println("Nice, you found an enemy ship!");
                 board[guessRow][guessCol] = 2;
             }
@@ -53,8 +48,34 @@ public class Battle {
                 board[guessRow][guessCol] = 3;
             }
             printMissileBoard(board);
+    }
+
+    public void opponentGuess(int[][] board) {
+        int guessRow = (int)(Math.random()*10);
+        int guessCol = (int)(Math.random()*10);
+        System.out.println("Your opponent guessed " + (char)(guessRow+'a'));
+        if (board[guessRow][guessCol] >= 2) {
+            System.out.println("Oops, you already guessed there!");
         }
-        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + "guesses!");
+        else if (board[guessRow][guessCol] == 1) {
+            System.out.println("Nice, you found an enemy ship!");
+            board[guessRow][guessCol] = 2;
+        }
+        else {
+            System.out.println("Splash! Your missile lands in an empty patch of water.");
+            board[guessRow][guessCol] = 3;
+        }
+        
+    }
+    // This function controls guessing and hit/win detection for the normal gamemode.
+    public void guessRegular(int[][] playerBoard, int[][] opponentBoard) {
+        System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
+        int numGuesses = 0;
+        while (countOf(playerBoard, 1) > 0 && countOf(opponentBoard, 1) > 0) {
+            playerGuess(opponentBoard);
+            opponentGuess(playerBoard);
+        }
+        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
     }
 
     // Prints the game board from the enemy player's perspective.

@@ -9,6 +9,6 @@ public class Tester {
         grid.printGameBoard(grid.getOpponentBoard());
         // grid.userRegularSetup();
         grid.randomSetup();
-        guesses.guessRegular(grid.getOpponentBoard());
+        guesses.guessRegular(grid.getPlayerBoard(), grid.getOpponentBoard());
     }
 }   

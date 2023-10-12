@@ -198,7 +198,7 @@ public class Setup {
                     opponentBoard[r][c] = 1;
                 }
             }
-            // printGameBoard(opponentBoard); 
+            // printGameBoard(opponentBoard);  
         }
     }
 
@@ -209,6 +209,7 @@ public class Setup {
     public int[][] getPlayerBoard() {
         return playerBoard;
     }
+    // Getter function: Returns the opponent's game board.
     public int[][] getOpponentBoard() {
         return opponentBoard;
     }
