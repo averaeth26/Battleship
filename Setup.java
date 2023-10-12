@@ -126,7 +126,7 @@ public class Setup {
     }
 
     // Places ships randomly on the grid
-    public void randomSetup() {
+    public void randomSetup(int[][] board) {
         int startPosRow;
         int startPosCol;
         int endPosRow;
@@ -158,7 +158,7 @@ public class Setup {
                             continue;
                         }
                         for (int r = Math.min(startPosRow, directions[dir]); r <= Math.max(startPosRow, directions[dir]); r++) {
-                            if (opponentBoard[r][startPosCol] == 1)
+                            if (board[r][startPosCol] == 1)
                                 overlapping = true;
                         }
                     }
@@ -167,7 +167,7 @@ public class Setup {
                             continue;
                         }
                         for (int c = Math.min(startPosCol, directions[dir]); c <= Math.max(startPosCol, directions[dir]); c++) {
-                            if (opponentBoard[startPosRow][c] == 1) {
+                            if (board[startPosRow][c] == 1) {
                                 overlapping = true;
                                 break;
                             }
@@ -195,7 +195,7 @@ public class Setup {
             // Adds each ship to the enemy board
             for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
                 for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
-                    opponentBoard[r][c] = 1;
+                    board[r][c] = 1;
                 }
             }
             // printGameBoard(opponentBoard);  

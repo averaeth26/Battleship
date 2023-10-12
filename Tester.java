@@ -7,8 +7,10 @@ public class Tester {
         Battle guesses = new Battle();
         introduction.instructions();
         // grid.printGameBoard(grid.getOpponentBoard());
-        grid.userRegularSetup();
-        grid.randomSetup();
+        // grid.userRegularSetup();
+        grid.randomSetup(grid.getPlayerBoard());
+        grid.randomSetup(grid.getOpponentBoard());
+        grid.printGameBoard(grid.getPlayerBoard());
         guesses.printMissileBoard(grid.getOpponentBoard());
         guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
     }
