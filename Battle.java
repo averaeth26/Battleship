@@ -19,7 +19,7 @@ public class Battle {
     }
     // This function controls user guessing and hit/win detection for the normal gamemode.
     public void guessRegular(int[][] board) {
-        System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).");
+        System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(board, 1) > 0) {
             System.out.print("Where would you like to guess: ");
