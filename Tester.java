@@ -6,7 +6,10 @@ public class Tester {
         Setup grid = new Setup();
         Battle guesses = new Battle();
         introduction.instructions();
-        grid.regularSetup();
+        introduction.pickGameMode();
+        if (introduction.getGameMode().equals("r") || introduction.getGameMode().equals("regular"))
+        grid.speedSetup();
+        guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
         // grid.printGameBoard(grid.getOpponentBoard());
         // grid.userSetup();
         // grid.randomSetup(grid.getPlayerBoard());

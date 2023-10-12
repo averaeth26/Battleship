@@ -3,32 +3,22 @@ import java.util.Scanner;
 // This class is responsible for the setup phase of the program, where the player and the opponent both set up their ships to prepare for attack.
 public class Setup {
     Scanner scan = new Scanner(System.in);
-    Intro introduction = new Intro();
-    setUpVariables(introduction.getGameMode().toLowerCase());
     int numRows = 10;
     int numCols = 10;
+    int[] shipsSpeed = {3, 4, 5};
+    int[] shipsRegular = {2, 3, 3, 4, 5};
+
+
     int[][] playerBoard = new int[numRows][numCols];
     int[][] opponentBoard = new int[numRows][numCols];
 
-    // Sets up Game Mode dependent variables based on current game mode
-    public void setUpVariables(String gameMode) {
-        if (gameMode.equals("f") || gameMode.equals("fast")) {
-            int[] ships = {3, 4, 5};
-            int numShips = ships.length;
-            }
-        else {
-            int[] ships = {3, 4, 5};
-            int numShips = ships.length;
-        }
-    }
-
-
     // Sets up the player-placed board in Normal mode
-    public void userSetup(int[][] board) {
+    public void userSetup(int[][] board, int[] ships) {
         System.out.println("Use row column format to place your ships on the board (Example: a1 or c10).\n");
         System.out.println("You will first place one end of your ship, then the other.\n");
         System.out.println("Additionally, if you ever want to replace your current ship, just type reset!\n");
         // Loops through each of the ships from shortest to longest (in the order of the ships array).
+        int numShips = ships.length;
         for(int ship = 0; ship < numShips; ship++) {
 
             boolean reset = false;
@@ -138,7 +128,8 @@ public class Setup {
     }
 
     // Places ships randomly on the grid
-    public void randomSetup(int[][] board) {
+    public void randomSetup(int[][] board, int[] ships) {
+        int numShips = ships.length;
         int startPosRow;
         int startPosCol;
         int endPosRow;
@@ -225,12 +216,14 @@ public class Setup {
 
     public void regularSetup() {
         printGameBoard(playerBoard);
-        userSetup(playerBoard);
+        userSetup(playerBoard, shipsRegular);
     }
     public void speedSetup() {
+        numRows = 8;
+        numCols = 8;
         printGameBoard(playerBoard);
-        randomSetup(playerBoard);
-        randomSetup(opponentBoard);
+        randomSetup(playerBoard, shipsSpeed);
+        randomSetup(opponentBoard, shipsSpeed);
     }
 
     // Prints out the board with row and column labels to the console.
