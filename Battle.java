@@ -60,6 +60,10 @@ public class Battle {
         int numCols = board[0].length;
         int guessRow = (int)(Math.random()*numRows);
         int guessCol = (int)(Math.random()*numCols);
+        while (board[guessRow][guessCol] >= 2) {
+            guessRow = (int)(Math.random()*numRows);
+            guessCol = (int)(Math.random()*numCols);
+        }
         System.out.print("Your opponent guessed " + (char)(guessRow+'a') + (guessCol+1));
         if (board[guessRow][guessCol] == 1) {
             System.out.println(" and hit one of your ships!\n");
@@ -75,6 +79,7 @@ public class Battle {
 
     // This function controls guessing and hit/win detection for the regular gamemode.
     public void guessRegular(int[][] opponentBoard) {
+        printMissileBoard(opponentBoard);
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(opponentBoard, 1) > 0) {
@@ -86,6 +91,8 @@ public class Battle {
 
     // This function controls guessing and hit/win detection for the speed gamemode.
     public void guessSpeed(int[][] playerBoard, int[][] opponentBoard) {
+        System.out.println("Opponent's board:\n");
+        printMissileBoard(opponentBoard);
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(playerBoard, 1) > 0 && countOf(opponentBoard, 1) > 0) {
