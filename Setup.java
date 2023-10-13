@@ -38,7 +38,7 @@ public class Setup {
             }
 
             // While loop checks to see if the start pos is a valid location on the grid
-            while (startPosCol > 9 || startPosCol < 0 || board[startPosRow][startPosCol] != 0) {
+            while (startPosCol > numCols-1 || startPosCol < 0 || board[startPosRow][startPosCol] != 0) {
                 System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
                 if (tileNum.toLowerCase().equals("reset")) {
@@ -87,7 +87,7 @@ public class Setup {
             // It also checks if the end pos is the correct distance away from the start pos
             while ((Math.abs(startPosRow - endPosRow) + Math.abs(startPosCol - endPosCol) != ships[ship]-1)
             || (startPosRow != endPosRow && startPosCol != endPosCol)
-            || (endPosCol > 9 || endPosCol < 0)
+            || (endPosCol > numCols-1 || endPosCol < 0)
             || board[endPosRow][endPosCol] != 0 || overlapping == true) {
                 System.out.print("Invalid placement! Try again: ");
                 tileNum = scan.nextLine();
@@ -143,8 +143,8 @@ public class Setup {
         for(int ship = 0; ship < numShips; ship++) {
             do {
             valid = false;
-            startPosRow = (int)(Math.random() * 10);
-            startPosCol = (int)(Math.random() * 10);
+            startPosRow = (int)(Math.random() * numRows);
+            startPosCol = (int)(Math.random() * numCols);
                 // Cycles through the four directions (up, down, left, and right)
                 directions[0] = startPosRow-(ships[ship]-1);
                 directions[1] = startPosRow+(ships[ship]-1);
@@ -229,14 +229,16 @@ public class Setup {
 
     // Prints out the board with row and column labels to the console.
     public void printGameBoard(int[][] board) {
+        int boardRows = board.length;
+        int boardCols = board[0].length;
         System.out.print("  ");
-        for (int i = 0; i < numCols; i++) {
+        for (int i = 0; i < boardRows; i++) {
             System.out.print(" " + (i+1) + " ");
         }
         System.out.println("");
-        for (int r = 0; r < numRows; r++) {
+        for (int r = 0; r < boardRows; r++) {
             System.out.print((char)(r+'a') + " ");
-            for (int c = 0; c < numCols; c++) {
+            for (int c = 0; c < boardCols; c++) {
                 if (board[r][c] == 0) {
                     System.out.print(" . ");
                 }

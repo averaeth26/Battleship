@@ -20,24 +20,26 @@ public class Battle {
         return currentCount;
     }
     // This function controls the player's guessing
-    public void playerGuess(int[][] board) {
+    public void playerGuess(int[][] board, String validationString) {
         System.out.print("Where would you like to guess: ");
             String guessNum = scan.nextLine();
+            int numCols = board[0].length;
             int guessRow = -1;
             int guessCol = -1;
+
             do {
-                if (!(guessNum.length() > 1 && guessNum.substring(0, 1).matches("[A-Ja-j]+") && guessNum.substring(1).matches("[0-9]+"))) {
+                if (!(guessNum.length() > 1 && guessNum.substring(0, 1).matches(validationString) && guessNum.substring(1).matches("[0-9]+"))) {
                     System.out.print("Invalid guess! Try again: ");
                     guessNum = scan.nextLine();
                     continue;
                 }
                 guessRow = (int)(guessNum.toLowerCase().charAt(0)) - 'a';
                 guessCol = Integer.parseInt(guessNum.substring(1))-1;
-                if (guessCol < 0 || guessCol > 9) {
+                if (guessCol < 0 || guessCol > numCols-1) {
                     System.out.print("Invalid guess! Try again: ");
                     guessNum = scan.nextLine();
                 }
-                } while (guessCol < 0 || guessCol > 9);
+                } while (guessCol < 0 || guessCol > numCols-1);
             if (board[guessRow][guessCol] >= 2) {
                 System.out.println("Oops, you already guessed there!\n");
             }
@@ -54,8 +56,10 @@ public class Battle {
 
     // This function controls the opponents's guessing
     public void opponentGuess(int[][] board) {
-        int guessRow = (int)(Math.random()*10);
-        int guessCol = (int)(Math.random()*10);
+        int numRows = board.length;
+        int numCols = board[0].length;
+        int guessRow = (int)(Math.random()*numRows);
+        int guessCol = (int)(Math.random()*numCols);
         System.out.print("Your opponent guessed " + (char)(guessRow+'a') + (guessCol+1));
         if (board[guessRow][guessCol] == 1) {
             System.out.println(" and hit one of your ships!\n");
@@ -66,6 +70,7 @@ public class Battle {
             System.out.println(" and missed your ships completely.\n");
             board[guessRow][guessCol] = 3;
         }  
+        System.out.println(numRows);
         gameBoard.printGameBoard(board);
     }
 
@@ -74,7 +79,7 @@ public class Battle {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(opponentBoard, 1) > 0) {
-            playerGuess(opponentBoard);
+            playerGuess(opponentBoard, "[A-Ja-j]+");
             numGuesses ++;
         }
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
@@ -85,7 +90,7 @@ public class Battle {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(playerBoard, 1) > 0 && countOf(opponentBoard, 1) > 0) {
-            playerGuess(opponentBoard);
+            playerGuess(opponentBoard, "[A-Ha-h]+");
             opponentGuess(playerBoard);
             numGuesses ++;
         }

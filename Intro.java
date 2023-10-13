@@ -27,6 +27,6 @@ public class Intro {
     }
     // Getter Function: Returns the user's selected Game Mode.
     public String getGameMode() {
-        return "";
+        return gameMode;
     }
 }
