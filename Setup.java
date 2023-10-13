@@ -215,6 +215,7 @@ public class Setup {
 
     // Controls the setup methods called when the user chooses regular mode.
     public void regularSetup() {
+        System.out.println("Your board: \n");
         printGameBoard(opponentBoard);
         userSetup(opponentBoard, shipsRegular);
     }
