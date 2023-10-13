@@ -243,7 +243,7 @@ public class Setup {
             System.out.print((char)(r+'a') + " ");
             for (int c = 0; c < boardCols; c++) {
                 if (board[r][c] == 0) {
-                    System.out.print(" . ");
+                    System.out.print(" ~ ");
                 }
                 else if (board[r][c] == 1) {
                     System.out.print("[:]");
@@ -252,7 +252,7 @@ public class Setup {
                     System.out.print(" x "); 
                 }
                 else {
-                    System.out.print(" ~ ");
+                    System.out.print(" - ");
                 }
             }
             System.out.println("");
