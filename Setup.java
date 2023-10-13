@@ -12,7 +12,7 @@ public class Setup {
     int[] shipsSpeed = {3, 4, 5};
     int[] shipsRegular = {2, 3, 3, 4, 5};
 
-    // Sets up the player-placed board in Normal mode
+    // Sets up the player-placed board in regular mode
     public void userSetup(int[][] board, int[] ships) {
         System.out.println("Use row column format to place your ships on the board (Example: a1 or c10).\n");
         System.out.println("You will first place one end of your ship, then the other.\n");
@@ -200,7 +200,6 @@ public class Setup {
                     board[r][c] = 1;
                 }
             }
-            // printGameBoard(opponentBoard);  
         }
     }
 
@@ -208,15 +207,19 @@ public class Setup {
     public int[][] getPlayerBoard() {
         return playerBoard;
     }
+
     // Getter function: Returns the opponent's game board.
     public int[][] getOpponentBoard() {
         return opponentBoard;
     }
 
+    // Controls the setup methods called when the user chooses regular mode.
     public void regularSetup() {
         printGameBoard(playerBoard);
         userSetup(playerBoard, shipsRegular);
     }
+
+    // Controls the setup methods called when the user chooses speed mode. Also changes some variables to fit speed mode instead of regular mode.
     public void speedSetup() {
         numRows = 8;
         numCols = 8;

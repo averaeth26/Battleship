@@ -15,12 +15,5 @@ public class Tester {
             grid.speedSetup();
             guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
         }
-        // grid.printGameBoard(grid.getOpponentBoard());
-        // grid.userSetup();
-        // grid.randomSetup(grid.getPlayerBoard());
-        // grid.randomSetup(grid.getOpponentBoard());
-        // grid.printGameBoard(grid.getPlayerBoard());
-        // guesses.printMissileBoard(grid.getOpponentBoard());
-        // guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
     }
 }   

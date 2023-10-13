@@ -74,7 +74,7 @@ public class Battle {
         gameBoard.printGameBoard(board);
     }
 
-    // This function controls guessing and hit/win detection for the normal gamemode.
+    // This function controls guessing and hit/win detection for the regular gamemode.
     public void guessRegular(int[][] opponentBoard) {
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
