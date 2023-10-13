@@ -7,9 +7,14 @@ public class Tester {
         Battle guesses = new Battle();
         introduction.instructions();
         introduction.pickGameMode();
-        if (introduction.getGameMode().equals("r") || introduction.getGameMode().equals("regular"))
-        grid.speedSetup();
-        guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
+        if (introduction.getGameMode().equals("r") || introduction.getGameMode().equals("regular")) {
+            grid.regularSetup();
+            guesses.guessRegular(grid.getOpponentBoard());
+        }
+        else {
+            grid.speedSetup();
+            guesses.guessSpeed(grid.getPlayerBoard(), grid.getOpponentBoard());
+        }
         // grid.printGameBoard(grid.getOpponentBoard());
         // grid.userSetup();
         // grid.randomSetup(grid.getPlayerBoard());

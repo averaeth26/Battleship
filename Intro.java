@@ -21,7 +21,7 @@ public class Intro {
         gameMode = scan.nextLine().toLowerCase();
         while (!gameMode.equals("f") && !gameMode.equals("r") && !gameMode.equals("fast") && !gameMode.equals("regular")) {
         System.out.print("Not a valid game mode! Pick again: ");
-        gameMode = scan.nextLine();
+        gameMode = scan.nextLine().toLowerCase();
         }
         System.out.println("");
     }

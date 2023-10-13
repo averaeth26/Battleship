@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 // This class is responsible for the setup phase of the program, where the player and the opponent both set up their ships to prepare for attack.
 public class Setup {
+    // Challenge: Inability to use conditionals in the class variable definitions
+    // Solution: Working carefully around this to minimize the necessity of conditionals in this section of the code
     Scanner scan = new Scanner(System.in);
     int numRows = 10;
     int numCols = 10;
-    int[] shipsSpeed = {3, 4, 5};
-    int[] shipsRegular = {2, 3, 3, 4, 5};
-
-
     int[][] playerBoard = new int[numRows][numCols];
     int[][] opponentBoard = new int[numRows][numCols];
+    int[] shipsSpeed = {3, 4, 5};
+    int[] shipsRegular = {2, 3, 3, 4, 5};
 
     // Sets up the player-placed board in Normal mode
     public void userSetup(int[][] board, int[] ships) {
@@ -20,7 +20,6 @@ public class Setup {
         // Loops through each of the ships from shortest to longest (in the order of the ships array).
         int numShips = ships.length;
         for(int ship = 0; ship < numShips; ship++) {
-
             boolean reset = false;
             System.out.print("Where would you like to place one end of your " + ships[ship] + " tile long ship?: ");
             String tileNum = scan.nextLine();
@@ -221,6 +220,8 @@ public class Setup {
     public void speedSetup() {
         numRows = 8;
         numCols = 8;
+        playerBoard = new int[numRows][numCols];
+        opponentBoard = new int[numRows][numCols];
         printGameBoard(playerBoard);
         randomSetup(playerBoard, shipsSpeed);
         randomSetup(opponentBoard, shipsSpeed);
