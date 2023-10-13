@@ -70,7 +70,6 @@ public class Battle {
             System.out.println(" and missed your ships completely.\n");
             board[guessRow][guessCol] = 3;
         }  
-        System.out.println(numRows);
         gameBoard.printGameBoard(board);
     }
 

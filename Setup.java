@@ -215,8 +215,8 @@ public class Setup {
 
     // Controls the setup methods called when the user chooses regular mode.
     public void regularSetup() {
-        printGameBoard(playerBoard);
-        userSetup(playerBoard, shipsRegular);
+        printGameBoard(opponentBoard);
+        userSetup(opponentBoard, shipsRegular);
     }
 
     // Controls the setup methods called when the user chooses speed mode. Also changes some variables to fit speed mode instead of regular mode.
