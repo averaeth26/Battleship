@@ -86,7 +86,7 @@ public class Battle {
             playerGuess(opponentBoard, "[A-Ja-j]+");
             numGuesses ++;
         }
-        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
+        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!\n");
     }
 
     // This function controls guessing and hit/win detection for the speed gamemode.
@@ -101,10 +101,10 @@ public class Battle {
             numGuesses ++;
         }
         if (countOf(opponentBoard, 1) == 0) {
-        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!");
+        System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!\n");
         }
         else {
-        System.out.println("Unfortunately, your opponent managed to sink all of your ships before you sank all of theirs.");
+        System.out.println("Unfortunately, your opponent managed to sink all of your ships before you sank all of theirs.\n");
         }
     }
 

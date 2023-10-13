@@ -225,9 +225,9 @@ public class Setup {
         numCols = 8;
         playerBoard = new int[numRows][numCols];
         opponentBoard = new int[numRows][numCols];
+        randomSetup(playerBoard, shipsSpeed);
         System.out.println("Your board:\n");
         printGameBoard(playerBoard);
-        randomSetup(playerBoard, shipsSpeed);
         randomSetup(opponentBoard, shipsSpeed);
     }
 

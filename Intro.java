@@ -14,7 +14,7 @@ public class Intro {
         System.out.println("In regular mode, one player places ships on a 10 by 10 board\nthen, a second player tries to guess the ships placed by the first player\n");
         System.out.println("In fast mode, you and a computer face off with randomized 8 by 8 boards\n");
         System.out.println("On the board:\n - Ships are represented by a '[:]' tile");
-        System.out.println(" - Missed guesses/ships are represented by an 'o' tile");
+        System.out.println(" - Missed guesses/ships are represented by an '-' or an' 'o' tile");
         System.out.println(" - Correct guesses/hit ships are represented by an 'x' tile\n");
     }
     // Allows the user to pick a regular or fast game.
