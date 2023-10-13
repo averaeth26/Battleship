@@ -253,7 +253,7 @@ public class Setup {
                     System.out.print(" x "); 
                 }
                 else {
-                    System.out.print(" - ");
+                    System.out.print(" o ");
                 }
             }
             System.out.println("");
