@@ -25,7 +25,7 @@ public class Setup {
             String tileNum = scan.nextLine();
             // Challenge: Getting the reset system to work was a huge challenge as I had to work it in around the existing code, which made it difficult for me to figure out where to put what.
             if (tileNum.toLowerCase().equals("reset")) {
-                ship -= 1;
+                ship--;
                 continue;
                 }
 
@@ -53,7 +53,7 @@ public class Setup {
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 startPosCol = Integer.parseInt(tileNum.substring(1))-1;
             }
-            if (reset == true) {
+            if (reset) {
                 ship -= 1;
                 continue;
             }
@@ -76,8 +76,8 @@ public class Setup {
             // For loops checks to see if two ships are overlapping
             boolean overlapping = false;
             if (endPosCol < 10 && endPosCol > 0) {
-                for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
-                    for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
+                for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r++) {
+                    for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c++) {
                         if (board[r][c] == 1)
                             overlapping = true;
                     }
@@ -103,8 +103,8 @@ public class Setup {
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 endPosCol = Integer.parseInt(tileNum.substring(1))-1;
                 overlapping = false;
-                for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
-                    for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
+                for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r++) {
+                    for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c++) {
                         if (board[r][c] == 1)
                             overlapping = true;
                     }
@@ -117,8 +117,8 @@ public class Setup {
             }   
 
             // Actually adds the ship tiles to the grid once it's validated.
-            for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
-                for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
+            for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r++) {
+                for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c++) {
                     board[r][c] = 1;
                 }
             }
@@ -195,8 +195,8 @@ public class Setup {
             } while (possibleDirections[randomDir] != true); // Generates the other endpoint of the ship in a random valid direction from the starting point
             // System.out.println("\n" + (char)(startPosRow+'a') + " " + (startPosCol+1) + " - " + (char)(endPosRow+'a') + " " + (endPosCol+1));
             // Adds each ship to the enemy board
-            for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r ++) {
-                for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c ++) {
+            for (int r = Math.min(startPosRow, endPosRow); r <= Math.max(startPosRow, endPosRow); r++) {
+                for (int c = Math.min(startPosCol, endPosCol); c <= Math.max(startPosCol, endPosCol); c++) {
                     board[r][c] = 1;
                 }
             }
