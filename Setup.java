@@ -218,6 +218,8 @@ public class Setup {
         System.out.println("Your board: \n");
         printGameBoard(opponentBoard);
         userSetup(opponentBoard, shipsRegular);
+        System.out.print("Press enter to move on and allow your opponent to guess your placed ships: ");
+        String confirmation = scan.nextLine();
     }
 
     // Controls the setup methods called when the user chooses speed mode. Also changes some variables to fit speed mode instead of regular mode.

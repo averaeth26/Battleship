@@ -7,7 +7,7 @@ public class Intro {
     // Prints out general instructions for the game if the user requests them.
     public void instructions() {
         System.out.println("Welcome to battleship!\n");
-        System.out.print("Do you need instructons on how to play the game?: ");
+        System.out.print("Do you need instructons on how to play the game? (y/n): ");
         needInstructions = scan.nextLine().toLowerCase();
         while (!needInstructions.equals("n") && !needInstructions.equals("y") && !needInstructions.equals("no") && !needInstructions.equals("yes")) {
             System.out.print("Not a valid response! Try again: ");
