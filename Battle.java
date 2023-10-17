@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
-// This class will control the flow of the game throughout the phase where players try to find and sink each other's ships (Game loop).
+/** 
+ * Battle.java
+ * @author Ethan Avera
+ * @since 10/11/23
+ * This class will control the flow of the game throughout the phase where players try to find and sink each other's ships (Game loop).
+ */
 public class Battle {
     Scanner scan = new Scanner(System.in);
     Setup gameBoard = new Setup();
@@ -28,6 +33,7 @@ public class Battle {
             int guessCol = -1;
 
             do {
+                // matches() method from W3Schools. This method compares a string to a regular expression and checks if all characters in the string are within the bound of that expression.
                 if (!(guessNum.length() > 1 && guessNum.length() < 4 && guessNum.substring(0, 1).matches(validationString) && guessNum.substring(1).matches("[0-9]+"))) {
                     System.out.print("Invalid guess! Try again: ");
                     guessNum = scan.nextLine();

@@ -1,5 +1,10 @@
 import java.util.Scanner;
-// This class is responsible for anything before the setup phase
+/**
+ * Intro.java
+ * @author Ethan Avera
+ * @since 10/9/23
+ * This class is responsible for anything before the setup phase
+ */
 public class Intro {
     String gameMode;
     String needInstructions;

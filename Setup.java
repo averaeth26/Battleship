@@ -1,7 +1,12 @@
 import java.util.Scanner;
 
-// This class is responsible for the setup phase of the program, where the player and the opponent both set up their ships to prepare for attack.
-public class Setup {
+/** 
+ * Battle.java
+ * @author Ethan Avera
+ * @since 9/28/23
+ * This class is responsible for the setup phase of the program, where the player and the opponent both set up their ships to prepare for attack.
+ */
+ public class Setup {
     // Challenge: Inability to use conditionals in the class variable definitions
     // Solution: Working carefully around this to minimize the necessity of conditionals in this section of the code
     Scanner scan = new Scanner(System.in);
@@ -32,6 +37,7 @@ public class Setup {
             int startPosRow = -1;
             int startPosCol = -1;
             // If statement to prevent scenarios that would result in crashes due to invalid input validation.
+            // matches() method from W3Schools. This method compares a string to a regular expression and checks if all characters in the string are within the bound of that expression.
             if (tileNum.length() > 1 && tileNum.length() < 4 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 startPosCol = Integer.parseInt(tileNum.substring(1))-1;
