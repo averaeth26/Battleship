@@ -53,7 +53,6 @@ public class Battle {
             }
             printMissileBoard(board);
     }
-
     // This function controls the opponents's guessing
     public void opponentGuess(int[][] board) {
         int numRows = board.length;
@@ -81,6 +80,7 @@ public class Battle {
     public void guessRegular(int[][] opponentBoard) {
         System.out.println("Opponent's board: \n");
         printMissileBoard(opponentBoard);
+        System.out.println("Your opponent has placed their ships on the board, try to find and sink them all to win!\n");
         System.out.println("Like ship locations, guesses should be written in row column form (such as a1 or c10).\n");
         int numGuesses = 0;
         while (countOf(opponentBoard, 1) > 0) {

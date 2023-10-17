@@ -2,9 +2,21 @@ import java.util.Scanner;
 // This class is responsible for anything before the setup phase
 public class Intro {
     String gameMode;
-    // Prints out general instructions for the game.
+    String needInstructions;
+    Scanner scan = new Scanner(System.in);
+    // Prints out general instructions for the game if the user requests them.
     public void instructions() {
         System.out.println("Welcome to battleship!\n");
+        System.out.print("Do you need instructons on how to play the game?: ");
+        needInstructions = scan.nextLine().toLowerCase();
+        while (!needInstructions.equals("n") && !needInstructions.equals("y") && !needInstructions.equals("no") && !needInstructions.equals("yes")) {
+            System.out.print("Not a valid response! Try again: ");
+            needInstructions = scan.nextLine().toLowerCase();
+        }
+        System.out.println("");
+        if (needInstructions.equals("n") || needInstructions.equals("no")) {
+            return;
+        }
         System.out.println("The aim of the game is to sink all of your opponent's ships\nbefore they sink all of yours.\n");
         System.out.println("The game is broken up into two phases:\n 1. The setup phase\n 2. The attacking phase\n");
         System.out.println("During the setup phase, both players place their ships on the board\n");
@@ -19,7 +31,6 @@ public class Intro {
     }
     // Allows the user to pick a regular or fast game.
     public void pickGameMode() {
-        Scanner scan = new Scanner(System.in);
         System.out.print("Would you like to play a regular or a fast game? (r/f): ");
         gameMode = scan.nextLine().toLowerCase();
         while (!gameMode.equals("f") && !gameMode.equals("r") && !gameMode.equals("fast") && !gameMode.equals("regular")) {
