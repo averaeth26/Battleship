@@ -28,7 +28,7 @@ public class Battle {
             int guessCol = -1;
 
             do {
-                if (!(guessNum.length() > 1 && guessNum.substring(0, 1).matches(validationString) && guessNum.substring(1).matches("[0-9]+"))) {
+                if (!(guessNum.length() > 1 && guessNum.length() < 4 && guessNum.substring(0, 1).matches(validationString) && guessNum.substring(1).matches("[0-9]+"))) {
                     System.out.print("Invalid guess! Try again: ");
                     guessNum = scan.nextLine();
                     continue;

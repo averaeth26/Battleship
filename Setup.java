@@ -32,7 +32,7 @@ public class Setup {
             int startPosRow = -1;
             int startPosCol = -1;
             // If statement to prevent scenarios that would result in crashes due to invalid input validation.
-            if (tileNum.length() > 1 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
+            if (tileNum.length() > 1 && tileNum.length() < 4 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 startPosCol = Integer.parseInt(tileNum.substring(1))-1;
             }
@@ -47,7 +47,7 @@ public class Setup {
                     }
             // If statement to prevent scenarios that would result in crashes due to invalid input validation.
             // Challenge: Finding and writing code to prevent every type of input that caused the program to crash.
-            if (tileNum.length() < 2 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
+            if (tileNum.length() < 2 || tileNum.length() > 3 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
                 continue;
             }
                 startPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
@@ -67,7 +67,7 @@ public class Setup {
             int endPosRow = 0;
             int endPosCol = 0;
             // If statement to prevent scenarios that would result in crashes due to invalid input validation.
-            if (tileNum.length() > 1 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
+            if (tileNum.length() > 1  && tileNum.length() < 4 && tileNum.substring(0, 1).matches("[A-Ja-j]+") && tileNum.substring(1).matches("[0-9]+")) {
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
                 endPosCol = Integer.parseInt(tileNum.substring(1))-1;
             }
@@ -97,7 +97,7 @@ public class Setup {
                     break;
                 }
             // If statement to prevent scenarios that would result in crashes due to invalid input validation.
-            if (tileNum.length() < 2 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
+            if (tileNum.length() < 2 || tileNum.length() > 3 || !tileNum.substring(0, 1).matches("[A-Ja-j]+") || !tileNum.substring(1).matches("[0-9]+")) {
                     continue;
                 }
                 endPosRow = (int)(tileNum.toLowerCase().charAt(0)) - 'a';
