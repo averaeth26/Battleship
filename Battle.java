@@ -85,7 +85,7 @@ public class Battle {
         int numGuesses = 0;
         while (countOf(opponentBoard, 1) > 0) {
             playerGuess(opponentBoard, "[A-Ja-j]+");
-            numGuesses ++;
+            numGuesses++;
         }
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!\n");
     }
@@ -99,7 +99,7 @@ public class Battle {
         while (countOf(playerBoard, 1) > 0 && countOf(opponentBoard, 1) > 0) {
             playerGuess(opponentBoard, "[A-Ha-h]+");
             opponentGuess(playerBoard);
-            numGuesses ++;
+            numGuesses++;
         }
         if (countOf(opponentBoard, 1) == 0) {
         System.out.println("Congratulations! You successfully sank all of your opponent's ships in " + numGuesses + " guesses!\n");
